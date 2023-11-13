@@ -10,27 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: SceneSubtitles Shared Data
+  m_Name: SpecialScenes Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: SceneSubtitles
-  m_TableCollectionNameGuidString: f8f6665e416714349950de1d2b025920
+  m_TableCollectionName: SpecialScenes
+  m_TableCollectionNameGuidString: e261f8fdf9e53594b9a638561395f6c1
   m_Entries:
-  - m_Id: 12493799424
-    m_Key: Intro_1
+  - m_Id: 2964231045120
+    m_Key: EnterName
     m_Metadata:
       m_Items: []
-  - m_Id: 192144470982656
-    m_Key: Intro_2
+  - m_Id: 2990143455232
+    m_Key: EnterPass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28127198724096
+    m_Key: AccNote
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 1455545890504966170
+    rid: 1455545900120670220
   references:
     version: 2
     RefIds:
-    - rid: 1455545890504966170
+    - rid: 1455545900120670220
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1699866667144
+        m_CustomEpoch: 1699909631660

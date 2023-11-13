@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: SceneSubtitles_en
+  m_Name: SpecialScenes_en
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: en
-  m_SharedData: {fileID: 11400000, guid: f8f6665e416714349950de1d2b025920, type: 2}
+  m_SharedData: {fileID: 11400000, guid: e261f8fdf9e53594b9a638561395f6c1, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 12493799424
-    m_Localized: 'Holographic AI: (Beep start-up sound) Please enter your credentials.'
+  - m_Id: 28127198724096
+    m_Localized: '*hint: it''s a joke'
     m_Metadata:
       m_Items: []
-  - m_Id: 192144470982656
-    m_Localized: 'Holographic AI: Hello {name}, You have new messages.'
+  - m_Id: 2964231045120
+    m_Localized: Enter Name..
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2990143455232
+    m_Localized: Enter Password..
     m_Metadata:
       m_Items: []
   references:

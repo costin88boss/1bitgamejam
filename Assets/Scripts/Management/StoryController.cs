@@ -1,5 +1,7 @@
 using System;
 using TMPro;
+using Unity.Properties;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -19,10 +21,50 @@ public class StoryController : MonoBehaviour
     private string text = "";
     private float typeSpeed;
 
+    // Data for the story
+    public TMP_InputField PlayerName { get; set; }
+    public TMP_InputField PlayerPass { get; set; }
+
+    public string playerName { get; set; }
+    public string playerPass { get; set; }
+
+    private bool specialDone;
+
+    [Header("For special scenes")]
+    public GameObject accPrompt;
+
+
+    // Special functions for special scenes.
+    private void SceneSpecialEnd()
+    {
+        nextBtn.enabled = true;
+        specialDone = true;
+        OnClick();
+    }
+
+    public void SceneAccPrompt()
+    {
+        if (PlayerName.text.Trim().Length == 0 || PlayerPass.text.Trim().Length == 0) return;
+
+        playerName = PlayerName.text;
+        playerPass = PlayerPass.text;
+
+        accPrompt.SetActive(false);
+        SceneSpecialEnd();
+    }
+
+
     private void WriteText(float speed = 20)
     {
         // If it gives error, something is wrong.
         text = scene.subtitles[subtitleIndex].GetLocalizedString();
+
+        // transform shit
+        if (PlayerName != null) {
+            text = text.Replace("{name}", playerName);
+            text = text.Replace("{pass}", playerPass);
+        }
+
         subtitleIndex++;
         this.typeSpeed = speed;
         subtitles.text = "";
@@ -43,11 +85,34 @@ public class StoryController : MonoBehaviour
         }
 
         nextBtn.enabled = false;
+
+        if(specialDone)
+        {
+            FadeInAndPrepareScene();
+            specialDone = false;
+            return;
+        }
+
+        switch (scene.specialType)
+        {
+            // TODO TWO DECISIONS
+            case SceneSpecialTypes.NormalScene:
+                FadeInAndPrepareScene();
+                break;
+            case SceneSpecialTypes.AccPrompt:
+                accPrompt.SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void FadeInAndPrepareScene()
+    {
         sceneImg.GetComponent<FadeInOut>().FadeIn(scene.fadeEndDuration, () =>
         {
             PrepareAfterClick();
         });
-        return;
     }
 
     private void PrepareAfterClick()
@@ -95,10 +160,5 @@ public class StoryController : MonoBehaviour
     private void Start()
     {
         nextBtn.enabled = false;
-    }
-
-    void Update()
-    {
-
     }
 }

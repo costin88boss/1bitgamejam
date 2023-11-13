@@ -33,11 +33,6 @@ public class CanvasController : MonoBehaviour
         cameraController.fadeScript.FadeOut(2f, OnStartGameFadeOutComplete);
     }
 
-    public void ContinueGame()
-    {
-        // TO-DO
-    }
-
     public void ExitGame()
     {
         Application.Quit();

@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8c2880ec778f3a4798c6a630875abbd, type: 3}
-  m_Name: Intro
+  m_Name: AfterIntro
   m_EditorClassIdentifier: 
-  specialType: 1
+  specialType: 0
   scene: {fileID: 21300000, guid: 0de2340c8a28e554ab68541a975547d7, type: 3}
-  nextScene: {fileID: 11400000, guid: d162a3739301f1246a8b2960ab9c3663, type: 2}
+  nextScene: {fileID: 0}
   subtitles:
   - m_TableReference:
       m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
     m_TableEntryReference:
-      m_KeyId: 12493799424
+      m_KeyId: 192144470982656
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  fadeStartDuration: 2
+  fadeStartDuration: 0
   fadeEndDuration: 0
-  startDelay: 2
+  startDelay: 0
   references:
     version: 2
     RefIds: []

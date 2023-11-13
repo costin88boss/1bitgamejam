@@ -8,7 +8,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "NewGameScene", menuName = "Story Scene/New game scene", order = 0)]
 public class Scene : ScriptableObject
 {
-    public string sceneIDForCode;
+    public SceneSpecialTypes specialType = SceneSpecialTypes.NormalScene;
 
     public Sprite scene;
     public Scene nextScene = null;

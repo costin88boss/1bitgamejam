@@ -9,18 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73eecf7a898fd9747bb4eef91d16689e, type: 3}
-  m_Name: Scene1PromptScene
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: UI
   m_EditorClassIdentifier: 
-  sceneIDForCode: 
-  scene: {fileID: 0}
-  nextScene: {fileID: 0}
-  subtitles: []
-  fadeStartDuration: 2
-  fadeEndDuration: 2
-  startDelay: 2
-  prompts: []
-  outputs: []
+  m_SharedTableData: {fileID: 11400000, guid: 06db084060e09df4488a5ee77d526659, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: f2caa9466a7eb0943ad94c711f5838a6, type: 2}
+  m_Extensions: []
+  m_Group: String Table
   references:
     version: 2
     RefIds: []
