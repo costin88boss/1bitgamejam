@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: e261f8fdf9e53594b9a638561395f6c1, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 1455545922392686606
   m_TableData:
   - m_Id: 28127198724096
     m_Localized: '*hint: it''s a joke'
@@ -30,6 +31,52 @@ MonoBehaviour:
     m_Localized: Enter Password..
     m_Metadata:
       m_Items: []
+  - m_Id: 355247494021120
+    m_Localized: 'New Mail from MARY
+
+      Subject: Miss you!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 356835755311104
+    m_Localized: 'From: Mary@FutureCorp.com
+
+      To: {story.PlayerNameStr}@FutureCorp.com'
+    m_Metadata:
+      m_Items:
+      - rid: 1455545922392686606
+  - m_Id: 358063436480512
+    m_Localized: "Hey {story.PlayerNameStr}, I hope you\u2019re doing well. It is
+      tough for me when you leave on business trips. Can\u2019t wait to have you
+      back home.\r\n Love you!"
+    m_Metadata:
+      m_Items:
+      - rid: 1455545922392686606
+  - m_Id: 367614860738560
+    m_Localized: 'New Message from FUTURE-CORP
+
+      Subject: Urgent meeting'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 369785031376896
+    m_Localized: 'From: Your.Boss@FutureCorp.com
+
+      To: {story.PlayerNameStr}@FutureCorp.com'
+    m_Metadata:
+      m_Items:
+      - rid: 1455545922392686606
+  - m_Id: 369840534601728
+    m_Localized: '{story.PlayerNameStr}, we need you in the office for an urgent
+      meeting. Your co-worker Mike has prepared something big and revolutionary.
+
+      See
+      you soon {story.PlayerNameStr}.'
+    m_Metadata:
+      m_Items:
+      - rid: 1455545922392686606
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1455545922392686606
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0040704c8a4401000040f023a845010000407049515001000040b0355e500100

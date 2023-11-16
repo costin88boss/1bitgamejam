@@ -15,12 +15,148 @@ MonoBehaviour:
   m_TableCollectionName: SceneSubtitles
   m_TableCollectionNameGuidString: f8f6665e416714349950de1d2b025920
   m_Entries:
+  - m_Id: 851184343597056
+    m_Key: Act1_Scene2_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852308278657024
+    m_Key: Act1_Scene2_10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852346656538624
+    m_Key: Act1_Scene2_11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852434434932736
+    m_Key: Act1_Scene2_12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852440634114048
+    m_Key: Act1_Scene2_13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852446879432704
+    m_Key: Act1_Scene2_14
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851378053332992
+    m_Key: Act1_Scene2_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851439004958720
+    m_Key: Act1_Scene2_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851474069340160
+    m_Key: Act1_Scene2_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851509339242496
+    m_Key: Act1_Scene2_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851550070128640
+    m_Key: Act1_Scene2_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851583754584064
+    m_Key: Act1_Scene2_7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851669251276800
+    m_Key: Act1_Scene2_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851711164956672
+    m_Key: Act1_Scene2_9
+    m_Metadata:
+      m_Items: []
   - m_Id: 12493799424
     m_Key: Intro_1
     m_Metadata:
       m_Items: []
   - m_Id: 192144470982656
     m_Key: Intro_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 530579559825408
+    m_Key: Intro_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 553663515869184
+    m_Key: Intro_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 850951488421888
+    m_Key: Intro_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 850999634837504
+    m_Key: Intro_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 864115244417024
+    m_Key: Act1_Scene2_15a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 864118641803264
+    m_Key: Act1_Scene2_15b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 864502894575616
+    m_Key: Act1_Scene2_16a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 864507063713792
+    m_Key: Act1_Scene2_16b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 865175266672640
+    m_Key: Act1_Scene2_17
+    m_Metadata:
+      m_Items: []
+  - m_Id: 865250546040832
+    m_Key: Act1_Scene2_18
+    m_Metadata:
+      m_Items: []
+  - m_Id: 867392975552512
+    m_Key: Act1_Scene2_19
+    m_Metadata:
+      m_Items: []
+  - m_Id: 867658391109632
+    m_Key: Act1_Scene2_20a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 867660400181248
+    m_Key: Act1_Scene2_20b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868105243869184
+    m_Key: Act1_Scene2_B_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868182431645696
+    m_Key: Act1_Scene2_B_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868217248563200
+    m_Key: Act1_Scene2_B_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868248454184960
+    m_Key: Act1_Scene2_B_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868303533785088
+    m_Key: Act1_Scene2_B_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868461541605376
+    m_Key: Act1_Scene2_B_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868501244887040
+    m_Key: Act1_Scene2_B_7
     m_Metadata:
       m_Items: []
   m_Metadata:

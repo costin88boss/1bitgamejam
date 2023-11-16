@@ -16,98 +16,136 @@ public class StoryController : MonoBehaviour
     public Scene introScene;
 
     private Scene scene;
-    private int subtitleIndex;
+    private int subtitleIndex = -1;
 
-    private string text = "";
+    private Caption text;
+
+    private string str = "";
+
     private float typeSpeed;
+
+    public GameObject specialUIStuffObj;
+    public GameObject biDecisionalScreen;
+    public TextMeshProUGUI biDecisionLeft, biDecisionRight;
 
     // Data for the story
     public TMP_InputField PlayerName { get; set; }
     public TMP_InputField PlayerPass { get; set; }
+    public string PlayerNameStr { get; set; } = "";
+    public string PlayerPassStr { get; set; } = "";
 
-    public string playerName { get; set; }
-    public string playerPass { get; set; }
-
-    private bool specialDone;
-
-    [Header("For special scenes")]
-    public GameObject accPrompt;
-
-
-    // Special functions for special scenes.
-    private void SceneSpecialEnd()
+    public void SpecialCaptionEnd()
     {
+        if (PlayerNameStr.Length == 0)
+        {
+            if (PlayerName.text.Trim().Length == 0 || PlayerPass.text.Trim().Length == 0)
+            {
+                PlayerName.text = "Dave";
+                PlayerPass.text = "Dave";
+            }
+            PlayerNameStr = PlayerName.text;
+            PlayerPassStr = PlayerPass.text;
+        }
         nextBtn.enabled = true;
-        specialDone = true;
-        OnClick();
+        OnClick(true);
     }
 
-    public void SceneAccPrompt()
+    private string _originalText;
+
+    public void WriteCustomTextAt20(string text)
     {
-        if (PlayerName.text.Trim().Length == 0 || PlayerPass.text.Trim().Length == 0) return;
-
-        playerName = PlayerName.text;
-        playerPass = PlayerPass.text;
-
-        accPrompt.SetActive(false);
-        SceneSpecialEnd();
+        if (_originalText == text) return;
+        str = text;
+        _originalText = text;
+        str = TransformStrStuff(str);
+        subtitles.text = "";
+        CancelInvoke(nameof(WriteChars));
+        InvokeRepeating(nameof(WriteChars), 0, 1f / 20);
     }
 
+
+    private string TransformStrStuff(string str)
+    {
+        if (PlayerName != null)
+        {
+            str = str.Replace("{name}", PlayerName.text);
+            str = str.Replace("{pass}", PlayerPass.text);
+            str = str.Replace("{{", "{"); // Don't question
+            str = str.Replace("}}", "}");
+        }
+        return str;
+    }
 
     private void WriteText(float speed = 20)
     {
-        // If it gives error, something is wrong.
-        text = scene.subtitles[subtitleIndex].GetLocalizedString();
-
-        // transform shit
-        if (PlayerName != null) {
-            text = text.Replace("{name}", playerName);
-            text = text.Replace("{pass}", playerPass);
-        }
-
         subtitleIndex++;
+        // If it gives error, something is wrong.
+
+        if (text.text == null) return; // hopefully doesn't make issues
+
+        str = text.text.GetLocalizedString();
+        if(text.speed > 0) speed = text.speed;
+        
+        str = TransformStrStuff(str);
         this.typeSpeed = speed;
         subtitles.text = "";
         CancelInvoke(nameof(WriteChars));
         InvokeRepeating(nameof(WriteChars), 0, 1f / speed);
     }
 
-    public void OnClick()
+    private Scene nextScene = null;
+
+    public void Decision(bool isRight)
     {
-        if (text.Length > 3) return;
+        if (scene is DecisionalScene a)
+        {
+            nextScene = !isRight ? a.sceneA : a.sceneB;
+            PrepareAfterClick();
+            return;
+        }
+        Debug.LogError("Function Decision called while on a non-decisional scene");
+    }
+
+    public void OnClick(bool forceSkip)
+    {
+        forceSkip = true;
+        if (!forceSkip && subtitles.text.Length - str.Length < 3 && str.Length != 0) return;
+        str = "";
+        subtitles.text = "";
+        CancelInvoke(nameof(WriteChars));
 
         if (scene == null) return; // should never be true.
 
-        if (scene.subtitles != null && subtitleIndex < scene.subtitles.Length)
+        if (scene.captions.Length > subtitleIndex)
         {
-            WriteText();
-            return;
+            text = scene.captions[subtitleIndex];
+            if (text.text != null)
+            {
+                WriteText();
+                if(text.captionGameObjectName != "")
+                {
+                    nextBtn.enabled = false;
+                    specialUIStuffObj.transform.Find(text.captionGameObjectName).gameObject.SetActive(true);
+                }
+                return;
+            }
         }
 
         nextBtn.enabled = false;
 
-        if(specialDone)
+        if (scene is DecisionalScene a)
         {
-            FadeInAndPrepareScene();
-            specialDone = false;
+            biDecisionalScreen.SetActive(true);
+            biDecisionLeft.text = a.decisionA.GetLocalizedString();
+            biDecisionRight.text = a.decisionB.GetLocalizedString();
+            biDecisionLeft.text = TransformStrStuff(biDecisionLeft.text);
+            biDecisionRight.text = TransformStrStuff(biDecisionRight.text);
             return;
         }
-
-        switch (scene.specialType)
-        {
-            // TODO TWO DECISIONS
-            case SceneSpecialTypes.NormalScene:
-                FadeInAndPrepareScene();
-                break;
-            case SceneSpecialTypes.AccPrompt:
-                accPrompt.SetActive(true);
-                break;
-            default:
-                break;
-        }
+        FadeInAndPrepareNextScene();
     }
 
-    private void FadeInAndPrepareScene()
+    public void FadeInAndPrepareNextScene()
     {
         sceneImg.GetComponent<FadeInOut>().FadeIn(scene.fadeEndDuration, () =>
         {
@@ -117,8 +155,14 @@ public class StoryController : MonoBehaviour
 
     private void PrepareAfterClick()
     {
+        str = "";
         subtitles.text = "";
-        scene = scene.nextScene;
+        CancelInvoke(nameof(WriteChars));
+        scene = scene switch
+        {
+            DecisionalScene => nextScene,
+            _ => scene.nextScene,
+        };
         if (scene == null) return;
         sceneImg.sprite = scene.scene;
         Invoke(nameof(StoryDelayHandle), scene.startDelay);
@@ -132,8 +176,10 @@ public class StoryController : MonoBehaviour
         sceneImg.GetComponent<FadeInOut>().FadeOut(scene.fadeStartDuration, () =>
         {
             nextBtn.enabled = true;
-            if (scene.subtitles == null || scene.subtitles.Length == 0) return;
-            WriteText();
+            if (scene.captions.Length > subtitleIndex) text = scene.captions[subtitleIndex];
+            else return;
+            if (text.text == null) return;
+            OnClick(true);
         });
     }
 
@@ -152,9 +198,9 @@ public class StoryController : MonoBehaviour
 
     private void WriteChars()
     {
-        if (text.Length == 0) return;
-        subtitles.text += text[0];
-        text = text[1..];
+        if (str.Length == 0) return;
+        subtitles.text += str[0];
+        str = str[1..];
     }
 
     private void Start()

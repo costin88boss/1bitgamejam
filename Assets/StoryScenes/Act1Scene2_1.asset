@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4fb9841de3b1424383b863699c4f47d, type: 3}
+  m_Name: Act1Scene2_1
+  m_EditorClassIdentifier: 
+  scene: {fileID: 0}
+  nextScene: {fileID: 0}
+  captions:
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
+      m_TableEntryReference:
+        m_KeyId: 865175266672640
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    speed: 0
+    captionGameObjectName: 
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
+      m_TableEntryReference:
+        m_KeyId: 865250546040832
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    speed: 0
+    captionGameObjectName: 
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
+      m_TableEntryReference:
+        m_KeyId: 867392975552512
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    speed: 0
+    captionGameObjectName: 
+  fadeStartDuration: 0
+  fadeEndDuration: 0
+  startDelay: 0
+  sceneA: {fileID: 0}
+  sceneB: {fileID: 11400000, guid: 0771729480714f648956e09f2b98914b, type: 2}
+  decisionA:
+    m_TableReference:
+      m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
+    m_TableEntryReference:
+      m_KeyId: 867658391109632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  decisionB:
+    m_TableReference:
+      m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
+    m_TableEntryReference:
+      m_KeyId: 867660400181248
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

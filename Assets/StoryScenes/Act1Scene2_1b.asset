@@ -10,27 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8c2880ec778f3a4798c6a630875abbd, type: 3}
-  m_Name: Intro
+  m_Name: Act1Scene2_1b
   m_EditorClassIdentifier: 
   scene: {fileID: 0}
-  nextScene: {fileID: 11400000, guid: 2e4167a926c363e4ca99bf3c5ff4363b, type: 2}
+  nextScene: {fileID: 0}
   captions:
   - text:
       m_TableReference:
         m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
       m_TableEntryReference:
-        m_KeyId: 12493799424
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    speed: 0
-    captionGameObjectName: AccPrompt
-  - text:
-      m_TableReference:
-        m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
-      m_TableEntryReference:
-        m_KeyId: 192144470982656
+        m_KeyId: 868105243869184
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -41,18 +30,7 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
       m_TableEntryReference:
-        m_KeyId: 530579559825408
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    speed: 0
-    captionGameObjectName: IntroInbox
-  - text:
-      m_TableReference:
-        m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
-      m_TableEntryReference:
-        m_KeyId: 553663515869184
+        m_KeyId: 868182431645696
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -63,7 +41,7 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
       m_TableEntryReference:
-        m_KeyId: 850951488421888
+        m_KeyId: 868217248563200
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -74,16 +52,49 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
       m_TableEntryReference:
-        m_KeyId: 850999634837504
+        m_KeyId: 868248454184960
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     speed: 0
     captionGameObjectName: 
-  fadeStartDuration: 3
-  fadeEndDuration: 3
-  startDelay: 2
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
+      m_TableEntryReference:
+        m_KeyId: 868303533785088
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    speed: 0
+    captionGameObjectName: 
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
+      m_TableEntryReference:
+        m_KeyId: 868461541605376
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    speed: 0
+    captionGameObjectName: 
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
+      m_TableEntryReference:
+        m_KeyId: 868501244887040
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    speed: 0
+    captionGameObjectName: 
+  fadeStartDuration: 0
+  fadeEndDuration: 0
+  startDelay: 0
   references:
     version: 2
     RefIds: []

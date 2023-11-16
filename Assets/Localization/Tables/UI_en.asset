@@ -35,7 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1660603613184
-    m_Localized: Do you want to quit? (Your game will be saved)
+    m_Localized: Do you want to quit? (Your progress will be reset)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 355754220470272
+    m_Localized: Login
     m_Metadata:
       m_Items: []
   references:

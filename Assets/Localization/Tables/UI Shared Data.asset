@@ -35,6 +35,10 @@ MonoBehaviour:
     m_Key: DoYouWantToQuit
     m_Metadata:
       m_Items: []
+  - m_Id: 355754220470272
+    m_Key: AccPromptTitle
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

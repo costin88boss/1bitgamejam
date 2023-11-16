@@ -26,6 +26,156 @@ MonoBehaviour:
     m_Localized: 'Holographic AI: Hello {name}, You have new messages.'
     m_Metadata:
       m_Items: []
+  - m_Id: 530579559825408
+    m_Localized: Select message
+    m_Metadata:
+      m_Items: []
+  - m_Id: 553663515869184
+    m_Localized: "Holographic AI: News \u201CStrange Aerial Phenomenon Reported Worldwide
+      \u2013 Unexplained Lights Fill the Sky\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 850951488421888
+    m_Localized: ({name} reacts with confusion but decides to prioritize the urgent
+      meeting.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 850999634837504
+    m_Localized: ({name} grabs their briefcase and heads out the door.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851184343597056
+    m_Localized: 'Boss: {name}, We need you to experience this simulation firsthand
+      that Mike setup. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851378053332992
+    m_Localized: We are pushing the boundaries of holographic technology here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851439004958720
+    m_Localized: 'Boss: Get yourself strapped into the VR suit.
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851474069340160
+    m_Localized: (You hesitate but follow your bosses orders.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851509339242496
+    m_Localized: (The chamber activates, dissolving your sense of reality)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851550070128640
+    m_Localized: (You are standing in a cityscape under an alien-filled sky.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851583754584064
+    m_Localized: "{{Hologram News Reporter}}: Breaking news! Aerial phenomenon worldwide
+      has been identified as an alien invasion. Citizens are advised to stay indoors
+      and remain calm.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851669251276800
+    m_Localized: (You are stunned at the revelation and begin to hear an omni present
+      voice)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 851711164956672
+    m_Localized: '{{Omni Present Voice}}: {name}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852308278657024
+    m_Localized: '{{Omni Present Voice}}: {name} Snap out of it!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852346656538624
+    m_Localized: (The simulation concludes as the holographic chamber deactivates)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852434434932736
+    m_Localized: (Reality begins to set in, you are disoriented and shaken.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852440634114048
+    m_Localized: (The Boss & Mike approach you eagerly awaiting feedback)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 852446879432704
+    m_Localized: 'Mike: Pretty intense {name}, huh?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 864115244417024
+    m_Localized: '{name}: What was that?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 864118641803264
+    m_Localized: '{name}: That was pretty rad.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 864502894575616
+    m_Localized: "{Boss}: It's all part of something big, {name}. You\u2019ll understand
+      soon."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 864507063713792
+    m_Localized: '{Mike}: I know, right? Just wait until you see what this is all
+      for.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 865175266672640
+    m_Localized: '{name}: What the hell is the connection between this simulation
+      and the strange lights in the sky? '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 865250546040832
+    m_Localized: "{Boss}: John, it is a necessary step for the future. You\u2019ll
+      thank us later"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 867392975552512
+    m_Localized: '{Mike}: Trust me, this is just the beginning'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 867658391109632
+    m_Localized: '{name}: Ok, I trust you'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 867660400181248
+    m_Localized: "{name}: I\u2019m not going along with whatever scheme you're cooking
+      up."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868105243869184
+    m_Localized: "(The room darkens, and the holographic chamber begins to activate)\t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868182431645696
+    m_Localized: (Mike & the Boss exchange a look)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868217248563200
+    m_Localized: "{Boss}: It looks like we have an insubordinate employee Mike. We
+      can\u2019t have that, can we?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868248454184960
+    m_Localized: (The chamber activates, dissolving your sense of reality)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868303533785088
+    m_Localized: (You are in a violently rumbling space ship.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868461541605376
+    m_Localized: (You hear a countdown.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 868501244887040
+    m_Localized: '{{Ship AI}}: 5.. 4.. 3.. 2.. 1..'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

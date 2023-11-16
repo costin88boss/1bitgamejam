@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8c2880ec778f3a4798c6a630875abbd, type: 3}
-  m_Name: AfterIntro
+  m_Name: Act1Scene2DecisionA
   m_EditorClassIdentifier: 
-  specialType: 0
-  scene: {fileID: 21300000, guid: 0de2340c8a28e554ab68541a975547d7, type: 3}
-  nextScene: {fileID: 0}
-  subtitles:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
-    m_TableEntryReference:
-      m_KeyId: 192144470982656
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  scene: {fileID: 0}
+  nextScene: {fileID: 11400000, guid: 334e1acd9e34eb643a61678fbbdc64b7, type: 2}
+  captions:
+  - text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f8f6665e416714349950de1d2b025920
+      m_TableEntryReference:
+        m_KeyId: 864502894575616
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    speed: 0
+    captionGameObjectName: 
   fadeStartDuration: 0
   fadeEndDuration: 0
   startDelay: 0
