@@ -4,6 +4,8 @@ using UnityEngine;
 public class Scene : ScriptableObject
 {
     public Sprite scene;
+    [Header("Optional")]
+    public AudioClip songToPlay = null;
     [Header("Unused in some derived classes!")]
     public Scene nextScene = null;
     public Caption[] captions = new Caption[0];

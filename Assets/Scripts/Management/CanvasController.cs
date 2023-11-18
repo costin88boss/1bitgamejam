@@ -14,6 +14,7 @@ public class CanvasController : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject pauseMenu;
     public GameObject gameHud;
+    public GameObject bg;
 
     public GameObject visualScene;
 
@@ -25,12 +26,24 @@ public class CanvasController : MonoBehaviour
         DontDestroyOnLoad(EventSystem.current);
         DontDestroyOnLoad(gameObject);
         eventSystem = EventSystem.current;
+        eventSystem.enabled = false;
+        GetComponent<AudioSource>().volume = 0;
+        cameraController.fadeScript.gameObject.GetComponent<SpriteRenderer>().color = new Color(0,0,0,1);
+        Invoke(nameof(StartLast), 0.1f);
+    } 
+
+    private void StartLast()
+    {
+        cameraController.fadeScript.FadeIn(2, () =>
+        {
+            eventSystem.enabled = true;
+        }, gameObject.GetComponent<AudioSource>());
     }
 
     public void NewGame()
     {
         eventSystem.enabled = false;
-        cameraController.fadeScript.FadeOut(2f, OnStartGameFadeOutComplete);
+        cameraController.fadeScript.FadeOut(2f, OnStartGameFadeOutComplete, gameObject.GetComponent<AudioSource>());
     }
 
     public void ExitGame()
@@ -56,9 +69,12 @@ public class CanvasController : MonoBehaviour
             mainMenu.SetActive(true);
             gameHud.SetActive(false);
             pauseMenu.SetActive(false);
+            bg.SetActive(true);
             cameraController.fadeScript.FadeIn(2f, () => {
                 eventSystem.enabled = true;
             });
+            gameObject.GetComponent<AudioSource>().volume = 1;
+            gameObject.GetComponent<AudioSource>().Play();
             UnpauseGame();
         });
     }
@@ -74,5 +90,6 @@ public class CanvasController : MonoBehaviour
         });
         mainMenu.SetActive(false);
         gameHud.SetActive(true);
+        bg.SetActive(false);
     }
 }

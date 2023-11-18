@@ -1,9 +1,5 @@
-using System;
 using TMPro;
-using Unity.Properties;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class StoryController : MonoBehaviour
@@ -13,11 +9,22 @@ public class StoryController : MonoBehaviour
 
     public Button nextBtn;
 
+    public Button restartBtn;
+
+
+
+    public int attemptsRemaining = 3;
+
     public Scene introScene;
+    public Scene noLightsEndScene;
+    public Scene withLightsEndScene;
 
     private Scene scene;
     private int subtitleIndex = -1;
 
+    public TextMeshProUGUI enterCredentials3Attempts;
+
+    public EndingScene noAttemptsScene;
     private Caption text;
 
     private string str = "";
@@ -34,18 +41,44 @@ public class StoryController : MonoBehaviour
     public string PlayerNameStr { get; set; } = "";
     public string PlayerPassStr { get; set; } = "";
 
+    public AudioClip[] typingSounds;
+    public AudioSource typingSfx;
+
+
+
     public void SpecialCaptionEnd()
     {
         if (PlayerNameStr.Length == 0)
         {
             if (PlayerName.text.Trim().Length == 0 || PlayerPass.text.Trim().Length == 0)
             {
-                PlayerName.text = "Dave";
-                PlayerPass.text = "Dave";
+                if (text.captionGameObjectName == "AccPrompt")
+                {
+                    nextBtn.enabled = false;
+                    specialUIStuffObj.transform.Find("AccPrompt").gameObject.SetActive(true);
+                    return;
+                }
             }
             PlayerNameStr = PlayerName.text;
             PlayerPassStr = PlayerPass.text;
         }
+
+        if (text.captionGameObjectName == "EnterCredentials3Attempts" && attemptsRemaining > 0)
+        {
+            if (PlayerPass.text != PlayerPassStr)
+            {
+                attemptsRemaining--;
+                if (attemptsRemaining > 0)
+                {
+                    nextBtn.enabled = false;
+                    enterCredentials3Attempts.text = "Attempts: " + attemptsRemaining;
+                    specialUIStuffObj.transform.Find("EnterCredentials3Attempts").gameObject.SetActive(true);
+                    return;
+                }
+            }
+            else attemptsRemaining = 3;
+        }
+
         nextBtn.enabled = true;
         OnClick(true);
     }
@@ -66,10 +99,10 @@ public class StoryController : MonoBehaviour
 
     private string TransformStrStuff(string str)
     {
-        if (PlayerName != null)
+        if (PlayerNameStr.Length > 0)
         {
-            str = str.Replace("{name}", PlayerName.text);
-            str = str.Replace("{pass}", PlayerPass.text);
+            str = str.Replace("{name}", PlayerNameStr);
+            str = str.Replace("{pass}", PlayerPassStr);
             str = str.Replace("{{", "{"); // Don't question
             str = str.Replace("}}", "}");
         }
@@ -84,8 +117,8 @@ public class StoryController : MonoBehaviour
         if (text.text == null) return; // hopefully doesn't make issues
 
         str = text.text.GetLocalizedString();
-        if(text.speed > 0) speed = text.speed;
-        
+        if (text.speed > 0) speed = text.speed;
+
         str = TransformStrStuff(str);
         this.typeSpeed = speed;
         subtitles.text = "";
@@ -105,29 +138,48 @@ public class StoryController : MonoBehaviour
         }
         Debug.LogError("Function Decision called while on a non-decisional scene");
     }
+    [HideInInspector]
+    public bool lightsTurnedOn;
+    public void ControlPanelDecision(bool turnOn)
+    {
+        lightsTurnedOn = turnOn;
+    }
 
     public void OnClick(bool forceSkip)
     {
-        forceSkip = true;
-        if (!forceSkip && subtitles.text.Length - str.Length < 3 && str.Length != 0) return;
+        if (!forceSkip && subtitles.text.Length - str.Length < 3 && str.Length != 0)
+        {
+            subtitles.text += str;
+            str = "";
+            return;
+        }
         str = "";
         subtitles.text = "";
         CancelInvoke(nameof(WriteChars));
 
         if (scene == null) return; // should never be true.
 
-        if (scene.captions.Length > subtitleIndex)
+        if (attemptsRemaining > 0)
         {
-            text = scene.captions[subtitleIndex];
-            if (text.text != null)
+            if (scene.captions.Length > subtitleIndex)
             {
-                WriteText();
-                if(text.captionGameObjectName != "")
+                text = scene.captions[subtitleIndex];
+                if (text.text.TableEntryReference.KeyId == 1609563672428581 && !lightsTurnedOn)
                 {
-                    nextBtn.enabled = false;
-                    specialUIStuffObj.transform.Find(text.captionGameObjectName).gameObject.SetActive(true);
+                    subtitleIndex++;
+                    OnClick(true);
+                    return;
                 }
-                return;
+                if (text.text != null)
+                {
+                    WriteText();
+                    if (text.captionGameObjectName != "")
+                    {
+                        nextBtn.enabled = false;
+                        specialUIStuffObj.transform.Find(text.captionGameObjectName).gameObject.SetActive(true);
+                    }
+                    return;
+                }
             }
         }
 
@@ -142,6 +194,19 @@ public class StoryController : MonoBehaviour
             biDecisionRight.text = TransformStrStuff(biDecisionRight.text);
             return;
         }
+        if (scene is EndingScene b)
+        {
+            if (b.isGoodEnding)
+            {
+                WriteCustomTextAt20("To be continued..");
+                restartBtn.gameObject.SetActive(true);
+                nextBtn.enabled = false;
+                return;
+            }
+            WriteCustomTextAt20("Bad ending!");
+            nextScene = introScene;
+            nextBtn.enabled = true;
+        }
         FadeInAndPrepareNextScene();
     }
 
@@ -150,7 +215,7 @@ public class StoryController : MonoBehaviour
         sceneImg.GetComponent<FadeInOut>().FadeIn(scene.fadeEndDuration, () =>
         {
             PrepareAfterClick();
-        });
+        }, songToPlay, true);
     }
 
     private void PrepareAfterClick()
@@ -158,14 +223,36 @@ public class StoryController : MonoBehaviour
         str = "";
         subtitles.text = "";
         CancelInvoke(nameof(WriteChars));
+        string sceneName = scene.name;
         scene = scene switch
         {
             DecisionalScene => nextScene,
+            EndingScene => nextScene,
             _ => scene.nextScene,
         };
+        if (attemptsRemaining <= 0)
+        {
+            scene = noAttemptsScene;
+            attemptsRemaining = 3;
+        }
+        if (sceneName == "near_ending")
+        {
+            if (lightsTurnedOn) scene = withLightsEndScene;
+            else scene = noLightsEndScene;
+        }
         if (scene == null) return;
         sceneImg.sprite = scene.scene;
         Invoke(nameof(StoryDelayHandle), scene.startDelay);
+    }
+
+    public AudioSource songToPlay = null;
+
+    public void ResetStuff()
+    {
+        subtitles.text = "";
+        nextBtn.enabled = false;
+        subtitleIndex = 0;
+        str = "";
     }
 
     private void StartScene()
@@ -173,6 +260,12 @@ public class StoryController : MonoBehaviour
         subtitles.text = "";
         nextBtn.enabled = false;
         subtitleIndex = 0;
+        if (scene.songToPlay != null)
+        {
+            songToPlay.clip = scene.songToPlay;
+            songToPlay.Play();
+            songToPlay.loop = true;
+        }
         sceneImg.GetComponent<FadeInOut>().FadeOut(scene.fadeStartDuration, () =>
         {
             nextBtn.enabled = true;
@@ -180,11 +273,12 @@ public class StoryController : MonoBehaviour
             else return;
             if (text.text == null) return;
             OnClick(true);
-        });
+        }, songToPlay, true);
     }
 
     internal void BeginStory()
     {
+        restartBtn.gameObject.SetActive(false);
         scene = introScene;
         sceneImg.sprite = scene.scene;
         sceneImg.color = new Color(1, 1, 1, 0);
@@ -200,6 +294,11 @@ public class StoryController : MonoBehaviour
     {
         if (str.Length == 0) return;
         subtitles.text += str[0];
+        if ("abcdefghijklmnopqrstuvwxyz0123456789()".Contains(str[0].ToString().ToLower()))
+        {
+            typingSfx.clip = typingSounds[Random.Range(0, typingSounds.Length)];
+            typingSfx.Play();
+        }
         str = str[1..];
     }
 

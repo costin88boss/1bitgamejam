@@ -11,6 +11,7 @@ public class FadeInOut : MonoBehaviour
     public bool stopped = true;
 
     private Action callback = null;
+    private new AudioSource audio = null;
     // fade time = negative = fade in
     // fade time = positive = fade out
 
@@ -26,7 +27,7 @@ public class FadeInOut : MonoBehaviour
         return _fadeTime == 0;
     }
 
-    public void FadeIn(float fadeTime, Action callback = null)
+    public void FadeIn(float fadeTime, Action callback = null, AudioSource audio = null, bool invertAudioLevel = false)
     {
         if (fadeTime == 0 && callback != null)
         {
@@ -38,11 +39,14 @@ public class FadeInOut : MonoBehaviour
         this.fadeTime = -fadeTime;
         _fadeTime = fadeTime;
         level = 1;
+        if (audio != null) audio.volume = 1;
         stopped = false;
+        this.invertAudioLevel = invertAudioLevel;
+        this.audio = audio;
         this.callback = callback;
     }
-
-    public void FadeOut(float fadeTime, Action callback = null)
+    private bool invertAudioLevel;
+    public void FadeOut(float fadeTime, Action callback = null, AudioSource audio = null, bool invertAudioLevel = false)
     {
         if (fadeTime == 0 && callback != null)
         {
@@ -54,13 +58,21 @@ public class FadeInOut : MonoBehaviour
         this.fadeTime = fadeTime;
         _fadeTime = 0;
         level = 0;
+        if (audio != null) audio.volume = 0;
         stopped = false;
+        this.invertAudioLevel = invertAudioLevel;
+        this.audio = audio;
         this.callback = callback;
     }
 
     private void UpdateColor()
     {
         level = _fadeTime / Mathf.Abs(fadeTime);
+        if (audio != null)
+        {
+            if (!invertAudioLevel) audio.volume = Mathf.Abs(1 - level);
+            else audio.volume = level;
+        }
         level = GameUtils.Math.easeOutExpo(level);
 
         if (!gameObject.TryGetComponent<SpriteRenderer>(out var spr))
@@ -76,6 +88,7 @@ public class FadeInOut : MonoBehaviour
     private void Finish()
     {
         stopped = true;
+        audio = null;
         if (callback == null) return;
         callback();
         //callback = null;
